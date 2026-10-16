@@ -51,7 +51,6 @@ chamados = [
   { "id": 50, "titulo": "Ajustar alinhamento do rodapé", "prioridade": "Baixa", "status": "Fechado", "usuario": "Dado Dolabella" }
 ]
 
-
 #1 pesquisa por usuario
 #2 pesquisa por prioridade
 #3 pesquisar por status
@@ -60,3 +59,77 @@ chamados = [
 #6 resolver chamado (oq esta em progresso)
 #7 fechar chamado
 #0 sair do sistema
+
+while True:
+    print("--->Veja seus chamados<---")
+    print("1 - pesquisa por usuario")
+    print("2 - pesquisa por prioridade")
+    print("3 - pesquisa por status")
+    print("4 - chamadas urgentes")
+    print("5 - abrir chamado")
+    print("6 - resolver chamado")
+    print("7 - fechar chamado")
+    print("0 - sair do sistema")
+
+    opcao = input("digite um numero: ")
+
+    if opcao == "1":
+        print("--->Pesquisar Chamado por Usuario<---")
+        chamar_usuario = input("qual usuario deseja ver: ")
+        for chamado in chamados:
+            if chamado ["usuario"] == chamar_usuario:
+             print(chamado)
+    if opcao == "2":
+       print("--->Pesquisa por prioridade<---")
+       for chamado in chamados:
+          if chamado ["prioridade"] == "Critica":
+             print(chamado)
+
+    if opcao == "3":
+       print("Pesquisa por Status")
+       achar_status = input("Status Aberto, Fechado ou Em progresso?")
+       for chamado in chamados:
+          if chamado ["status"] == achar_status:
+             print(chamado)
+
+    if opcao == "4":
+       print("--->Chamados Urgentes<---")
+       for chamado in chamados:
+          if chamado ["prioridade"] == "Critica" and chamado ["status"] == "Aberto":
+             print(chamado)
+
+    if opcao == "5":
+       print("--->Abrir Chamado<---")
+       titulo = input("Digite um titulo? :")
+       prioridade = input("Qual a prioridade? :")
+       status = input("Qual o status? :")
+       usuario = input ("Qual o nome de usuario? :")
+
+       novo_chamado = {
+          "titulo": titulo,
+          "prioridade": prioridade,
+          "status": status,
+          "usuario": usuario,
+       }
+       chamados.append(novo_chamado)
+       print (chamados)
+
+    if opcao == "6":
+       print("--->Resolver Chamado<---")
+       chamado_finalizado = input("Qual é o chamado que quer resolver? :")
+       for chamado in chamados:
+          if chamado ["titulo"] == chamado_finalizado:
+             chamado ["status"] = "Fechado"
+             print (f"chamado fechado com sucesso!")
+
+    elif opcao == "7":
+       print("--->Fechar Chamado<---")
+       fechar_chamado = input("Qual chamado deseja fechar? :")
+       for chamado in chamados:
+          if chamado ["titulo"] == fechar_chamado:
+             chamados.remove(chamado)
+             print(f"Chamado removido com sucesso!")
+
+    elif opcao == "0":
+       print("Saindo do sistema...")
+       break
